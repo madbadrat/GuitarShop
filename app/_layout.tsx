@@ -5,9 +5,11 @@ export default function RootLayout() {
   return (
     <>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(unloginedTabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(mainTabs)" options={{ headerShown: false }} />
       </Stack>
-      <Redirect href="/login" />
+      {/* <Redirect href="/login" /> */}
+      <Redirect href={"/profile"} />
       <StatusBar style="light" />
     </>
   )
