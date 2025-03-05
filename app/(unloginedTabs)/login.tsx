@@ -1,11 +1,12 @@
 import { Button } from "@/components/Button";
 import { TextInput } from "@/components/TextInput";
 import { Colors } from "@/components/consts/tokens";
+import { Styles } from "@/components/consts/styles";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function Login() {
   return (
-    <View style={styles.container}>
+    <View style={Styles.container}>
       <View style={styles.headers}>
         <Text style={[styles.text, { fontSize: 40 }]}>Найди свой звук</Text>
         <Text style={[styles.text, { fontSize: 36 }]}>Играй по-своему</Text>
@@ -30,12 +31,6 @@ export default function Login() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: Colors.main
-  },
   form: {
     paddingTop: 60,
     paddingHorizontal: 16,

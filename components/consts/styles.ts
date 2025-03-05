@@ -69,4 +69,10 @@ export const Styles = StyleSheet.create({
         borderBottomColor: Colors.active,
         borderBottomWidth: 2
     },
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: Colors.main
+    },
 })
