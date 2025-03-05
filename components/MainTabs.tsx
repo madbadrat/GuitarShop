@@ -38,6 +38,9 @@ export function MainScreenTabs() {
                 name="profile"
                 options={{
                     headerTitle: "Профиль",
+                    headerTitleStyle: {
+                        fontSize: 32
+                    },
                     tabBarButton: () => {
                         return (
                             <ProfileTab />
