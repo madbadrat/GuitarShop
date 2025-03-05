@@ -49,6 +49,17 @@ export function MainScreenTabs() {
                 }}
             />
 
+            <ExpoTabs.Screen
+                name="history"
+                options={{
+                    headerTitle: "История заказов",
+                    headerTitleStyle: {
+                        fontSize: 32
+                    },
+                    href: null
+                }}
+            />
+
 
         </ExpoTabs>
     )

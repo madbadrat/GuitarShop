@@ -9,7 +9,8 @@ export default function RootLayout() {
         <Stack.Screen name="(mainTabs)" options={{ headerShown: false }} />
       </Stack>
       {/* <Redirect href="/login" /> */}
-      <Redirect href={"/profile"} />
+      {/* <Redirect href={"/profile"} /> */}
+      <Redirect href={"/history"} />
       <StatusBar style="light" />
     </>
   )
