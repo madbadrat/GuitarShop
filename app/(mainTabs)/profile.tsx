@@ -13,7 +13,7 @@ export default function Profile() {
                 />
                 <Text style={styles.phoneNumber}>+78005553535</Text>
                 <View style={styles.buttonContainer}>
-                    <Button label="Выйти" />
+                    <Button label="Выйти" targetScreen="/login" />
                 </View>
             </View>
             <View style={styles.orderSection}>
@@ -24,7 +24,7 @@ export default function Profile() {
                     </View>
                 </View>
                 <View style={styles.orderHistoryButtonWrapper}>
-                    <Button label="История заказов" />
+                    <Button label="История заказов" targetScreen="/history" />
                 </View>
             </View>
         </View>

@@ -58,6 +58,7 @@ export default function Order() {
                 <View style={styles.cardButtonContainer}>
                     <Button
                         label="Оплатить"
+                        targetScreen={null}
                     />
                 </View>
             </View>

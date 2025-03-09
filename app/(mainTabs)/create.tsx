@@ -84,7 +84,7 @@ export default function Create() {
                     <View style={styles.totalContainerRow}>
                         <Text style={styles.totalContainerRowText}>Итого: 166456 р.</Text>
                         <View style={styles.buttonContainer}>
-                            <Button label="Оформить заказ" />
+                            <Button label="Оформить заказ" targetScreen="/order" />
                         </View>
                     </View>
                 </View>

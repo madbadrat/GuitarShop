@@ -24,7 +24,7 @@ export default function Login() {
 
         <TextInput />
 
-        <Button label="Войти" />
+        <Button label="Войти" targetScreen="/profile" />
       </View>
     </View>
   );
