@@ -116,6 +116,6 @@ const styles = StyleSheet.create({
         flex: 1
     },
     cardButtonContainer: {
-        marginBottom: 16
+        marginBottom: 8
     }
 })
