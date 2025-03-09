@@ -60,6 +60,16 @@ export function MainScreenTabs() {
                 }}
             />
 
+            <ExpoTabs.Screen
+                name="order"
+                options={{
+                    headerTitle: "Оформление заказа",
+                    headerTitleStyle: {
+                        fontSize: 32
+                    },
+                    href: null
+                }}
+            />
 
         </ExpoTabs>
     )

@@ -10,7 +10,8 @@ export default function RootLayout() {
       </Stack>
       {/* <Redirect href="/login" /> */}
       {/* <Redirect href={"/profile"} /> */}
-      <Redirect href={"/history"} />
+      {/* <Redirect href={"/history"} /> */}
+      <Redirect href={"/order"} />
       <StatusBar style="light" />
     </>
   )
