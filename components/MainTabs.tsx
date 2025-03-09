@@ -28,10 +28,19 @@ export function MainScreenTabs() {
                 name="create"
                 options={{
                     headerTitle: "Моя гитара",
+                    headerTitleStyle: {
+                        fontSize: 32
+                    },
                     title: "Создать гитару",
                     tabBarButton: () => (
                         <CreateTabActive />
-                    )
+                    ),
+                    tabBarStyle: {
+                        backgroundColor: Colors.support,
+                        height: 80,
+                        borderTopWidth: 1,
+                        borderColor: Colors.main
+                    }
                 }}
             />
             <ExpoTabs.Screen

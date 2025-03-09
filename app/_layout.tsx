@@ -11,7 +11,8 @@ export default function RootLayout() {
       {/* <Redirect href="/login" /> */}
       {/* <Redirect href={"/profile"} /> */}
       {/* <Redirect href={"/history"} /> */}
-      <Redirect href={"/order"} />
+      {/* <Redirect href={"/order"} /> */}
+      <Redirect href={"/create"} />
       <StatusBar style="light" />
     </>
   )
