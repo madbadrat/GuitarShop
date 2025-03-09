@@ -72,7 +72,8 @@ const styles = StyleSheet.create({
         width: '100%',
         borderRadius: 50,
         alignItems: 'center',
-        marginBottom: 16
+        marginBottom: 16,
+        paddingVertical: 8
     },
     totalHeaderText: {
         color: Colors.white,
@@ -86,7 +87,8 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.support,
         width: '100%',
         borderRadius: 50,
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingVertical: 8
     },
     cardHeaderText: {
         color: Colors.white,
