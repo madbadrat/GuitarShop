@@ -44,14 +44,14 @@ export default function Order() {
 
                 <View style={styles.cardFields}>
                     <View style={styles.cardFieldsNumber}>
-                        <TextInput style={{ width: '100%' }} />
+                        <TextInput style={{ width: '100%' }} label="Номер карты" />
                     </View>
                     <View style={styles.cardFieldsOthers}>
                         <View style={styles.expirationContainer}>
-                            <TextInput style={{ width: 'auto' }} />
+                            <TextInput style={{ width: 'auto' }} label="Срок действия" />
                         </View>
                         <View style={styles.cvvContainer}>
-                            <TextInput style={{ width: 'auto' }} />
+                            <TextInput style={{ width: 'auto' }} label="CVV" />
                         </View>
                     </View>
                 </View>

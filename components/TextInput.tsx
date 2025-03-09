@@ -1,23 +1,30 @@
-import { TextInput as RNTextInput, ViewStyle, TextStyle } from "react-native"
-import { Styles } from "./consts/styles";
+import { TextInput as PaperTextInput } from "react-native-paper";
 import { useState } from "react";
+import { Styles } from "./consts/styles";
+import { ViewStyle, TextStyle } from "react-native";
 
 type Props = {
-    editable?: boolean,
-    value?: string,
-    style?: ViewStyle | TextStyle
-}
+    label?: string;
+    editable?: boolean;
+    value?: string;
+    style?: ViewStyle | TextStyle;
+};
 
-export function TextInput({ editable = true, value, style }: Props) {
+export function TextInput({ label, editable = true, value, style }: Props) {
+    const [text, setText] = useState(value || "");
     const [isFocused, setIsFocused] = useState(false);
 
     return (
-        <RNTextInput
+        <PaperTextInput
             style={[Styles.input, isFocused && Styles.focusedInput, style]}
+            label={label}
+            value={text}
+            onChangeText={setText}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             editable={editable}
-            value={value}
+            textColor="white"
+            underlineColor="transparent"
         />
-    )
+    );
 }
