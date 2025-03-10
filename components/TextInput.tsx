@@ -8,18 +8,24 @@ type Props = {
     editable?: boolean;
     value?: string;
     style?: ViewStyle | TextStyle;
+    onChangeText?: (text: string) => void;
 };
 
-export function TextInput({ label, editable = true, value, style }: Props) {
+export function TextInput({ label, editable = true, value, style, onChangeText }: Props) {
     const [text, setText] = useState(value || "");
     const [isFocused, setIsFocused] = useState(false);
+
+    const handleChangeText = (newText: string) => {
+        setText(newText);
+        onChangeText?.(newText);
+    };
 
     return (
         <PaperTextInput
             style={[Styles.input, isFocused && Styles.focusedInput, style]}
             label={label}
             value={text}
-            onChangeText={setText}
+            onChangeText={handleChangeText}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             editable={editable}

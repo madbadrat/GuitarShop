@@ -3,8 +3,12 @@ import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-nati
 import { Colors } from './consts/tokens';
 import DropdownIcon from '@/assets/icons/dropdown-icon';
 
-const DropdownMenuComponent = () => {
-    const [selectedItem, setSelectedItem] = useState(null);
+interface DropdownMenuComponentProps {
+    onSelect?: (value: string) => void;
+}
+
+const DropdownMenuComponent: React.FC<DropdownMenuComponentProps> = ({ onSelect }) => {
+    const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const [isDropdownVisible, setDropdownVisible] = useState(false);
 
     const data = [
@@ -17,13 +21,20 @@ const DropdownMenuComponent = () => {
         setDropdownVisible(!isDropdownVisible);
     };
 
+    const handleSelect = (item: { label: string; value: string }) => {
+        setSelectedItem(item.label);
+        setDropdownVisible(false);
+        if (onSelect) {
+            onSelect(item.value);
+        }
+    };
+
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={toggleDropdown} style={styles.dropdown}>
                 <Text style={styles.selectedItemText}>
-                    {selectedItem ? selectedItem : 'Выберите элемент'}
+                    {selectedItem || 'Выберите элемент'}
                 </Text>
-
                 <DropdownIcon />
             </TouchableOpacity>
 
@@ -33,10 +44,7 @@ const DropdownMenuComponent = () => {
                         <TouchableOpacity
                             key={item.value}
                             style={styles.dropdownItem}
-                            onPress={() => {
-                                setSelectedItem(item.label);
-                                setDropdownVisible(false);
-                            }}
+                            onPress={() => handleSelect(item)}
                         >
                             <Text style={styles.itemText}>{item.label}</Text>
                         </TouchableOpacity>
