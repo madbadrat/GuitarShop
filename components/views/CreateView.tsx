@@ -1,7 +1,7 @@
 import { View, ScrollView, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import { useCreateViewModel } from '@/viewmodels/useCreateViewModel';
-import { formsImages, pickupsImages, markersImages } from '@/models/CreateModels';
+import { formsImages, pickupsImages, markersImages } from '@/models/CreateModel';
 import Carousel from '@/components/Carousel';
 import DropdownMenuComponent from '../Dropdown';
 import { Button } from '../Button';

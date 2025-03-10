@@ -6,7 +6,7 @@ import { TotalRow } from "@/components/TotalRow";
 import { View, Text, StyleSheet } from "react-native";
 import { useOrderViewModel } from "@/viewmodels/useOrderViewModel";
 
-export default function Order() {
+export default function OrderView() {
     const {
         order,
         cardNumber,

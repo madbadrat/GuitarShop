@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GuitarConfig } from '@/models/CreateModels';
+import { GuitarConfig } from '@/models/CreateModel';
 
 export function useCreateViewModel() {
     const [config, setConfig] = useState<GuitarConfig>({

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { OrderModel } from "@/models/OrderModels";
+import { OrderModel } from "@/models/OrderModel";
 
 export function useOrderViewModel() {
     const [order, setOrder] = useState<OrderModel>({
