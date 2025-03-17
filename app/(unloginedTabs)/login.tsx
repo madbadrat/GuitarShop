@@ -4,8 +4,8 @@ import { Colors } from "@/components/consts/tokens";
 import { Styles } from "@/components/consts/styles";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import { useState } from "react";
-import axios from 'axios';
 import { useRouter } from "expo-router";
+import { sendOtp, verifyOtp } from "@/repositories/ApiRepository";
 
 export default function Login() {
   const [phone, setPhone] = useState('');
@@ -15,29 +15,20 @@ export default function Login() {
 
 
   const handleButtonClick = async () => {
-    try {
       if (!isOtpSent) {
-        const response = await axios.post('http://192.168.0.100:8080/user/otp', {
-          phoneNumber: phone
-        });
+        const response = await sendOtp(phone);
         if (response.status === 200) {
           Alert.alert('OTP отправлен (по умолчанию 123)');
           setIsOtpSent(true);
         }
       } else {
-        const response = await axios.post('http://192.168.0.100:8080/user/verify-otp', {
-          phoneNumber: phone,
-          otpCode: otp
-        });
+        const response = await verifyOtp(phone, otp);
         if (response.data.status === true) {
           router.push('/profile');
         } else {
           Alert.alert('Неверный OTP');
         }
       }
-    } catch (error) {
-      console.error('Ошибка при запросе:', error);
-    }
   };
 
   return (
