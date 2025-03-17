@@ -2,9 +2,44 @@ import { Button } from "@/components/Button";
 import { TextInput } from "@/components/TextInput";
 import { Colors } from "@/components/consts/tokens";
 import { Styles } from "@/components/consts/styles";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import axios from 'axios';
+import { useRouter } from "expo-router";
 
 export default function Login() {
+  const [phone, setPhone] = useState('');
+  const [otp, setOtp] = useState('');
+  const [isOtpSent, setIsOtpSent] = useState(false);
+  const router = useRouter();
+
+
+  const handleButtonClick = async () => {
+    try {
+      if (!isOtpSent) {
+        const response = await axios.post('http://192.168.0.100:8080/user/otp', {
+          phoneNumber: phone
+        });
+        if (response.status === 200) {
+          Alert.alert('OTP отправлен (по умолчанию 123)');
+          setIsOtpSent(true);
+        }
+      } else {
+        const response = await axios.post('http://192.168.0.100:8080/user/verify-otp', {
+          phoneNumber: phone,
+          otpCode: otp
+        });
+        if (response.data.status === true) {
+          router.push('/profile');
+        } else {
+          Alert.alert('Неверный OTP');
+        }
+      }
+    } catch (error) {
+      console.error('Ошибка при запросе:', error);
+    }
+  };
+
   return (
     <View style={Styles.container}>
       <View style={styles.headers}>
@@ -19,12 +54,14 @@ export default function Login() {
             style={{ width: 60 }}
           />
 
-          <TextInput />
+          <TextInput onChangeText={setPhone} />
         </View>
 
-        <TextInput />
+        {isOtpSent &&
+          <TextInput onChangeText={setOtp} />
+        }
 
-        <Button label="Войти" targetScreen="/profile" />
+        <Button label="Войти" onPress={handleButtonClick} />
       </View>
     </View>
   );
