@@ -24,7 +24,7 @@ export default function Login() {
         const response = await sendOtp(phone);
         await delay(5000); // симулируем ожидание ответа сервера
         if (response.status === 200) {
-          Alert.alert('OTP отправлен (по умолчанию 123)');
+          Alert.alert('OTP отправлен', 'По умолчанию 123');
           setIsOtpSent(true);
         }
       } else {
