@@ -27,15 +27,11 @@ export default function Login() {
         if (response.data.status === true) {
           router.push('/profile');
         } else {
-          Alert.alert('Неверный OTP');
+          Alert.alert('Ошибка', 'Неверный OTP');
         }
       }
     } catch (error) {
-      if (error.message.includes("Некорректный номер телефона")) {
-        Alert.alert("Некорректный номер телефона");
-      } else if (error.message.includes("Некорректный OTP-код")) {
-        Alert.alert("Некорректный OTP-код");
-      }
+      Alert.alert("Ошибка", error.message);
     }
   };
 
