@@ -15,6 +15,7 @@ export default function Login() {
 
 
   const handleButtonClick = async () => {
+    try {
       if (!isOtpSent) {
         const response = await sendOtp(phone);
         if (response.status === 200) {
@@ -29,6 +30,13 @@ export default function Login() {
           Alert.alert('Неверный OTP');
         }
       }
+    } catch (error) {
+      if (error.message.includes("Некорректный номер телефона")) {
+        Alert.alert("Некорректный номер телефона");
+      } else if (error.message.includes("Некорректный OTP-код")) {
+        Alert.alert("Некорректный OTP-код");
+      }
+    }
   };
 
   return (
