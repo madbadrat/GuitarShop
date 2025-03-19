@@ -8,10 +8,13 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/guitarshop
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=123456
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
     ports:
-      - "8080:8080"
+      - "8090:8080"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    restart: always
 
   db:
     image: postgres:latest
@@ -24,6 +27,12 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres_data:
