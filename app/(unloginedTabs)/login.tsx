@@ -2,9 +2,46 @@ import { Button } from "@/components/Button";
 import { TextInput } from "@/components/TextInput";
 import { Colors } from "@/components/consts/tokens";
 import { Styles } from "@/components/consts/styles";
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Alert, StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { useRouter } from "expo-router";
+import { sendOtp, verifyOtp } from "@/repositories/ApiRepository";
 
 export default function Login() {
+  const [phone, setPhone] = useState('');
+  const [otp, setOtp] = useState('');
+  const [isOtpSent, setIsOtpSent] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+  const handleButtonClick = async () => {
+    try {
+      setIsLoading(true);
+
+      if (!isOtpSent) {
+        const response = await sendOtp(phone);
+        await delay(5000); // симулируем ожидание ответа сервера
+        if (response.status === 200) {
+          Alert.alert('OTP отправлен', 'По умолчанию 123');
+          setIsOtpSent(true);
+        }
+      } else {
+        const response = await verifyOtp(phone, otp);
+        if (response.data.status === true) {
+          router.push('/profile');
+        } else {
+          Alert.alert('Ошибка', 'Неверный OTP');
+        }
+      }
+    } catch (error) {
+      Alert.alert("Ошибка", error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <View style={Styles.container}>
       <View style={styles.headers}>
@@ -19,12 +56,20 @@ export default function Login() {
             style={{ width: 60 }}
           />
 
-          <TextInput />
+          <TextInput onChangeText={setPhone} />
         </View>
 
-        <TextInput />
+        {isOtpSent &&
+          <TextInput onChangeText={setOtp} />
+        }
 
-        <Button label="Войти" targetScreen="/profile" />
+        {isLoading ? (
+          <ActivityIndicator size="large" color={Colors.active} />
+        ) : (
+          <Button label="Войти" onPress={handleButtonClick} />
+        )}
+
+
       </View>
     </View>
   );

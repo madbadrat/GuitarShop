@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  app:
+    image: madbadrat/guitarshop:latest
+    container_name: guitarshop-container
+    ports:
+      - "8090:8080"
